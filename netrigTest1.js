@@ -10,6 +10,7 @@ var bitwidth = 16;
  * see https://github.com/websockets/ws/blob/master/doc/ws.md for ws options
  * 
  */
+app.use(express.static(process.env.STATIC_BASE));
 app.use(function (req, res, next) {
 	console.log('middleware');
 	req.testing = 'testing';
