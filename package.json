@@ -12,7 +12,7 @@
     "express": "^4.16.4",
     "express-ws": "^4.0.0",
     "mic": "^2.1.2",
-    "node-alsa-cardinfo": "github:jteich/node-alsa-cardinfo#enumerate-devices",
-    "wrtc": "^0.3.5"
+    "netrig-frontend": "github:jteich/netrig-frontend#dev",
+    "node-alsa-cardinfo": "github:jteich/node-alsa-cardinfo#enumerate-devices"
   }
 }
