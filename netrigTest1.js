@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var expressWs = require('express-ws')(app);
 var mic = require('mic');
+const cardInfo = require('node-alsa-cardinfo');
 
 var rate = 11025;
 var bitwidth = 16;
@@ -18,20 +19,10 @@ app.use(function (req, res, next) {
 	return next();
 });
 
-/*
-app.get('/', function (req, res, next) {
-	console.log('get route', req.testing);
-	res.end();
+app.get('/radio/audioOutDevices', function (req, res) {
+	info = cardInfo.list();
+	res.json(info);
 });
-
-app.ws('/', function (ws, req) {
-	ws.on('message', function (msg) {
-		console.log(msg);
-		ws.send("OK");
-	});
-	console.log('socket', req.testing);
-});
-*/
 
 app.ws('/radio/audioOut', function (ws, req) {
 	var open = true;
