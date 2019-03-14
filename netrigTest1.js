@@ -11,12 +11,14 @@ var bitwidth = 16;
  * 
  */
 app.use(express.static(process.env.STATIC_BASE));
+
 app.use(function (req, res, next) {
 	console.log('middleware');
 	req.testing = 'testing';
 	return next();
 });
 
+/*
 app.get('/', function (req, res, next) {
 	console.log('get route', req.testing);
 	res.end();
@@ -29,6 +31,8 @@ app.ws('/', function (ws, req) {
 	});
 	console.log('socket', req.testing);
 });
+*/
+
 app.ws('/radio/audioOut', function (ws, req) {
 	var open = true;
 
@@ -37,6 +41,8 @@ app.ws('/radio/audioOut', function (ws, req) {
 	setupBlock[0] = rate;
 	setupBlock[1] = bitwidth;
 	ws.send(setupBlock);
+
+	console.log("sent setup block");
 
 	//see https://github.com/ashishbajaj99/mic for args
 	var micInstance = mic({
@@ -68,6 +74,7 @@ app.ws('/radio/audioOut', function (ws, req) {
 		open = false;
 		micInstance.stop();
 	});
+	console.log("attempting to start audio input");
 	micInstance.start();
 });
 app.listen(3000);
