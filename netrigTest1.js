@@ -55,7 +55,13 @@ app.ws('/radio/audioOut', function (ws, req) {
 		debug: true,
 		exitOnSilence: 0
 	});
+
+	console.log("get mic instance");
+
 	var micInputStream = micInstance.getAudioStream();
+
+	console.log("got audio stream");
+	
 	var seq = 0;
 	micInputStream.on('data', function (data) {
 		if (open) {
