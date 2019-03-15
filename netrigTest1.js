@@ -31,7 +31,7 @@ app.get('/radio/audioDeviceDetails/:device', function (req, res) {
 	res.json(info);
 });
 
-app.ws('/radio/audioOut', function (ws, req) {
+app.ws('/radio/audioOut/:device', function (ws, req) {
 	var open = true;
 
 	//ws.send
@@ -49,7 +49,8 @@ app.ws('/radio/audioOut', function (ws, req) {
 		encoding: 'signed-integer', // OR unsinged-integer,
 		fileType: 'raw', // or wav
 
-		device: 'plughw:CARD=Device,DEV=0',
+		//device: 'plughw:CARD=Device,DEV=0',
+		device: req.params.device,
 		rate,
 		channels: '1',
 		debug: true,
