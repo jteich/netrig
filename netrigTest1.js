@@ -4,7 +4,8 @@ var expressWs = require('express-ws')(app);
 var mic = require('mic');
 const cardInfo = require('node-alsa-cardinfo');
 
-var rate = 11025;
+//var rate = 11025;
+var rate = 44100;
 var bitwidth = 16;
 
 /**
@@ -23,6 +24,8 @@ app.get('/radio/audioOutDevices', function (req, res) {
 	info = cardInfo.list();
 	//exclude input-only devices
 	info = info.filter((item)=>{return item.io !== "Input" && item.name !== "null";});
+	//for now, limit to plughw
+	info = info.filter((item)=>{return item.name.startsWith("plughw");});
 	res.json(info);
 });
 
