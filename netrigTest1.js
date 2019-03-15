@@ -22,7 +22,12 @@ app.use(function (req, res, next) {
 app.get('/radio/audioOutDevices', function (req, res) {
 	info = cardInfo.list();
 	//exclude input-only devices
-	info = info.filter((item)=>{return item.io != "Input";});
+	info = info.filter((item)=>{return item.io !== "Input" && item.name !== "null";});
+	res.json(info);
+});
+
+app.get('/radio/audioDeviceDetails/:device', function (req, res) {
+	info = cardInfo.get(req.params.device);
 	res.json(info);
 });
 
