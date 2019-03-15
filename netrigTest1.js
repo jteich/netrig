@@ -44,7 +44,7 @@ app.ws('/radio/audioOut', function (ws, req) {
 
 	//see https://github.com/ashishbajaj99/mic for args
 	micInstance = mic({
-		endian: 'big', //or big
+		endian: 'little', //or big
 		bitwidth, //8, 16 or 24
 		encoding: 'signed-integer', // OR unsinged-integer,
 		fileType: 'raw', // or wav
