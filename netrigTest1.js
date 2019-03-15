@@ -43,21 +43,12 @@ app.ws('/radio/audioOut', function (ws, req) {
 	console.log("sent setup block");
 
 	//see https://github.com/ashishbajaj99/mic for args
-	/*
-	var micInstance = mic({
+	micInstance = mic({
 		endian: 'little', //or big
 		bitwidth: 16, //8, 16 or 24
-		encoding: signed-integer, // OR unsinged-integer,
+		encoding: 'signed-integer', // OR unsinged-integer,
 		fileType: 'raw', // or wav
 
-		device: 'plughw:CARD=Device,DEV=0',
-		rate: "11025",
-		channels: '1',
-		debug: true,
-		exitOnSilence: 0
-	});
-	*/
-	micInstance = mic({
 		device: 'plughw:CARD=Device,DEV=0',
 		rate: '11025',
 		channels: '1',
