@@ -45,12 +45,12 @@ app.ws('/radio/audioOut', function (ws, req) {
 	//see https://github.com/ashishbajaj99/mic for args
 	var micInstance = mic({
 		endian: 'little', //or big
-		bitwidth, //8, 16 or 24
+		bitwidth: bitwidth, //8, 16 or 24
 		encoding: signed-integer, // OR unsinged-integer,
 		fileType: 'raw', // or wav
 
 		device: 'plughw:CARD=Device,DEV=0',
-		rate,
+		rate: rate,
 		channels: '1',
 		debug: true,
 		exitOnSilence: 0
@@ -61,7 +61,7 @@ app.ws('/radio/audioOut', function (ws, req) {
 	var micInputStream = micInstance.getAudioStream();
 
 	console.log("got audio stream");
-	
+
 	var seq = 0;
 	micInputStream.on('data', function (data) {
 		if (open) {
