@@ -45,12 +45,12 @@ app.ws('/radio/audioOut', function (ws, req) {
 	//see https://github.com/ashishbajaj99/mic for args
 	var micInstance = mic({
 		endian: 'little', //or big
-		bitwidth: bitwidth, //8, 16 or 24
+		bitwidth: 16, //8, 16 or 24
 		encoding: signed-integer, // OR unsinged-integer,
 		fileType: 'raw', // or wav
 
 		device: 'plughw:CARD=Device,DEV=0',
-		rate: rate,
+		rate: "11025",
 		channels: '1',
 		debug: true,
 		exitOnSilence: 0
