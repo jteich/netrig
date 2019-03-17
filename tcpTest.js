@@ -1,30 +1,23 @@
 var net = require('net');
 var mic = require('mic');
 
-var rate = 11025;
+//var rate = 11025;
+var rate = 44100;
 var bitwidth = 16;
 
 var micInputStream, micInstance;
 const server = net.createServer((socket) => {
 
 	var open = true;
-	/*
-	micInstance = mic({
-		//device: 'hw:CARD=Device,DEV=0',
-		device: 'plughw:CARD=Device,DEV=0',
-		rate: '11025',
-		channels: '1',
-		debug: true,
-		exitOnSilence: 0
-	});
-	*/
+
 	micInstance = mic({
 		endian: 'little', //or big
 		bitwidth, //8, 16 or 24
 		encoding: 'signed-integer', // OR unsinged-integer,
 		fileType: 'wav', // or wav
 
-		device: 'plughw:CARD=Device,DEV=0',
+		//device: 'plughw:CARD=Device,DEV=0',
+		device: 'plughw:CARD=ATR2USB,DEV=0',
 		rate,
 		channels: '1',
 		debug: true,

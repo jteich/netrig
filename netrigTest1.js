@@ -69,15 +69,6 @@ app.ws('/radio/audioOut/:device', function (ws, req) {
 	var seq = 0;
 	micInputStream.on('data', function (data) {
 		if (open) {
-			/*
-			ws.send("data(" + data.length + "):");
-			ws.send("seq:" + seq);
-			console.log("seq:" + seq++);
-			//console.log(data.read());
-			//ws.send(data.toString('base64'));
-			ws.send(data.toString('hex'));
-			//ws.send(data, {binary: true});
-			*/
 			ws.send(data, {binary: true});
 		}
 	});
