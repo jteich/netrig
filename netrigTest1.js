@@ -68,8 +68,14 @@ app.ws('/radio/audioOut/:device', function (ws, req) {
 
 	var seq = 0;
 	micInputStream.on('data', function (data) {
-		if (open) {
+		if(!open){
+			return;
+		}
+		try{
 			ws.send(data, {binary: true});
+		} catch(err) {
+			console.error("Error sending audio to websocket: ", err);
+			return;
 		}
 	});
 	ws.on('close', function () {
